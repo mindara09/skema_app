@@ -1,4 +1,5 @@
 <div>
+    <!--
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-lg navbar-light animate__animated animate__fadeInDown" style="background-color: white;">
       <div class="container">
@@ -29,6 +30,7 @@
           </div>
       </div>
     </nav>
+    -->
 
     <div class="container mt-5">
     	@include('flash')
@@ -63,14 +65,13 @@
                          <div class="card-body">
                             <div class="row">
                                 <div class="col-lg mt-5">
-                                    <h1 class="text-white merienda animate__animated animate__fadeInUp">Coffee is a hug in a mug..</h1>
-                                    <p class="text-white mt-5 animate__animated animate__fadeInDown">
-                                        -  SKEMA COFFEE ARCHETYPE -
-                                    </p>
+                                    <h1 class="text-white aktiv-grotesk animate__animated animate__fadeInUp" style="font-weight: 700;">Coffee is a hug in a mug..</h1>
+                                    <br>
+                                    <h5 class="text-white aktiv-grotesk animate__animated animate__fadeInUp" >- SKEMA COFFEE ARCHETYPE -</h5>
                                 </div>
                                 <div class="col">
                                     <center>
-                                        <img src="{{ asset('/img/bg-skema.png')}}" class="img-responsive d-none d-lg-block mt-5 animate__animated animate__fadeInUp" width="400" >
+                                        <img src="{{ asset('/img/logo-white-skema.png')}}" class="img-responsive d-none d-lg-block mt-5 animate__animated animate__fadeInUp" width="120" >
                                     </center>
                                 </div>
                             </div>
@@ -107,18 +108,24 @@
                                                         <div class="col">
                                                             <h5 class="mt-4 text-dark">{{ $product->name_product}} </h5>
                                                             <p style="font-size: 12px;" > {{ $product->description}} </p>
-                                                            @if (!empty($product->discount))
-                                                            <p class=""><del>Rp.{{ $product->price }}</del></p>
-                                                            <h5 class="text-dark">Rp.{{ $product->price - ($product->price * $product->discount / 100) }}</h5>
-                                                            @elseif (empty($product->discount))
-                                                            <h5 class="text-dark mt-4">Rp.{{ $product->price }}</h5>
+                                                            @if ($product->status == "empty")
+                                                            <h5 class="text-danger">Out of Stock</h5>
+                                                            @else
+                                                                @if (!empty($product->discount))
+                                                                <p class=""><del>Rp.{{ $product->price }}</del></p>
+                                                                <h5 class="text-dark">Rp.{{ $product->price - ($product->price * $product->discount / 100) }}</h5>
+                                                                @elseif (empty($product->discount))
+                                                                <h5 class="text-dark mt-4">Rp.{{ $product->price }}</h5>
+                                                                @endif
                                                             @endif
                                                         </div>
                                                         <div class="col">
                                                             <center>
                                                                 <img class="img-responsive rounded mt-4" style="border: none;" src="{{ asset('/storage/img/products')}}/{{ $product->photo}}" alt="Card image cap" height="100" width="100">
                                                                 <br>
+                                                                @if ($product->status == "available")
                                                                 <a href="" class="btn text-white mt-2" style="border-radius: 30px; background-color: #120F0E; width: 100px;" data-toggle="modal" data-target="#editProduct{{ $product->id}}">Add</a>
+                                                                @endif
                                                             </center>
                                                         </div>
                                                     </div>
@@ -278,6 +285,7 @@
                                     <p class="mb-3">PPN 10% : Rp.{{ $ppn }} </p>
                                     <hr>
                                     <h5 class="mb-3 text-dark">Total : Rp.{{ $total }} </h5>
+                                    <p>* for payment at the cashier</p>
                                     <button type="submit" class="btn btn-primary btn-lg" wire:click="order({{$customer_id}}, {{ $total}} )">Submit Order</button>
                                 </div>
                             </div>

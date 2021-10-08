@@ -23,9 +23,26 @@
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     @livewireStyles
 
+    <script type="text/javascript">
+    window.setTimeout("waktu()",1000);
+    function waktu() {
+        var tanggal = new Date();
+        setTimeout("waktu()",1000);
+        document.getElementById("jam").innerHTML = tanggal.getHours();
+        document.getElementById("menit").innerHTML = tanggal.getMinutes();
+        document.getElementById("detik").innerHTML = tanggal.getSeconds();
+    }
+    </script>
+    <style>
+        #jam-digital{overflow:hidden; width:350px}
+        #hours{float:left; width:100px; height:50px; background-color:#000; margin-right:25px; border-radius: 30px;}
+        #minute{float:left; width:100px; height:50px; background-color:#000; border-radius: 30px;}
+        #second{float:right; width:100px; height:50px; background-color:#000; margin-left:25px; border-radius: 30px;}
+        #jam-digital p{color:#FFF; font-size:26px; text-align:center; margin-top:4px}
+    </style>
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="waktu()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -101,15 +118,12 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link  rounded-circle mr-3">
                         <i class="fa fa-bars text-dark"></i>
                     </button>
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"

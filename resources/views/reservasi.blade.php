@@ -5,6 +5,7 @@
 @section('content')
 
 <body style="background-color: #120F0E;">
+    <!--
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-lg navbar-light animate__animated animate__fadeInDown" style="background-color: white;">
       <div class="container">
@@ -35,6 +36,7 @@
           </div>
       </div>
     </nav>
+    -->
     <div class="container mt-5">
         <div class="card" style="border-radius: 30px; box-shadow: 0px 20px 4px rgba(0, 0, 0, 0.25);">
             <div class="card-body">
@@ -80,6 +82,9 @@
                                     <span class="badge badge-pill badge-danger">Full</span>
                                     @else
                                     <span class="badge badge-pill badge-primary">Empty</span>
+                                        @if ($customer->where('schedule', 12)->first() && !empty($customer->where('created_at',$dateNow->format('Y-m-d'))))
+                                        {{ 25 - $customer->where('schedule', 12)->count()}} Number of present left
+                                        @endif
                                     @endif
                                 </td>
                             </tr>
@@ -91,6 +96,7 @@
                                     <span class="badge badge-pill badge-danger">Full</span>
                                     @else
                                     <span class="badge badge-pill badge-primary">Empty</span>
+                                    {{ 25 -$customer->where('schedule', 13)->count()}} Number of present left
                                     @endif
                                 </td>
                             </tr>
@@ -102,6 +108,7 @@
                                     <span class="badge badge-pill badge-danger">Full</span>
                                     @else
                                     <span class="badge badge-pill badge-primary">Empty</span>
+                                    {{ 25 -$customer->where('schedule', 14)->count()}} Number of present left
                                     @endif
                                 </td>
                             </tr>
@@ -113,6 +120,7 @@
                                     <span class="badge badge-pill badge-danger">Full</span>
                                     @else
                                     <span class="badge badge-pill badge-primary">Empty</span>
+                                    {{ 25 -$customer->where('schedule', 15)->count()}} Number of present left
                                     @endif
                                 </td>
                             </tr>
@@ -123,6 +131,7 @@
                                     <span class="badge badge-pill badge-danger">Full</span>
                                     @else
                                     <span class="badge badge-pill badge-primary">Empty</span>
+                                    {{ 25 -$customer->where('schedule', 16)->count()}} Number of present left
                                     @endif
                                 </td>
                             </tr>
@@ -134,6 +143,7 @@
                                     <span class="badge badge-pill badge-danger">Full</span>
                                     @else
                                     <span class="badge badge-pill badge-primary">Empty</span>
+                                    {{ 25 -$customer->where('schedule', 17)->count()}} Number of present left
                                     @endif
                                 </td>
                             </tr>
@@ -144,6 +154,7 @@
                                     <span class="badge badge-pill badge-danger">Full</span>
                                     @else
                                     <span class="badge badge-pill badge-primary">Empty</span>
+                                    {{ 25 -$customer->where('schedule', 18)->count()}} Number of present left
                                     @endif
                                 </td>
                             </tr>
@@ -154,6 +165,7 @@
                                     <span class="badge badge-pill badge-danger">Full</span>
                                     @else
                                     <span class="badge badge-pill badge-primary">Empty</span>
+                                    {{ 25 -$customer->where('schedule', 19)->count()}} Number of present left
                                     @endif
                                 </td>
                             </tr>
@@ -162,6 +174,12 @@
                 </div>
             </div>
         </div>
+        <center>
+             <h3 class="text-white">Contact Us</h3>
+             <h5 class="text-white">Contact us if you need anything</h5>
+             <br>
+             <h2><a href="#" class="btn btn-light btn-lg"><i class="fa fa-phone text-dark" aria-hidden="true"></i>&nbsp;Whatsapp : 085862120201</a></h2>
+        </center>
     </div>
     <img src="{{ asset('/img/wave-reservasi.svg')}}" class="img-responsive">
 

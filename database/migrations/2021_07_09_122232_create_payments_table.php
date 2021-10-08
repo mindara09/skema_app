@@ -16,7 +16,7 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('id_receipt');
-            $table->foreignId('customer_id')->references('id')->on('customers');
+            $table->foreignId('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->integer('balance_paid');
             $table->integer('amount_pay')->nullable();
             $table->integer('money_change');

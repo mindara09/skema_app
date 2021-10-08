@@ -1,7 +1,18 @@
 <div>
 	<!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <div class="row">
+            <div class="col"> 
+                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            </div>
+            <div class="col">
+                <div id="jam-digital">
+                    <div id="hours"><p id="jam"></p></div>
+                    <div id="minute"><p id="menit"></p></div>
+                    <div id="second"><p id="detik"></p></div>
+                </div>
+            </div>
+        </div>
     </div>
 	<div class="row">
 		<!-- Earnings (All) Card Example -->
@@ -120,6 +131,8 @@
                             <tr>
                                 <th>Name</th>
                                 <th>List Hour</th>
+                                <th>Status</th>
+                                <th>Option</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -143,11 +156,17 @@
                                 @elseif ($customers->schedule == 19)
                                 <td>19.00 - 20.00</td>
                                 @endif
+                                <td>{{ $customers->status }}</td>
+                                <td>
+                                    <button class="btn btn-link btn-danger btn-sm" data-target="#delete{{ $customers->id }}" data-toggle="modal">
+                                    <i class="fa fa-edit text-white"></i>
+                                </button>
+                                </td>
                             </tr>
                             @endforeach
                             <tr>
                                 <th>Total Customer</th>
-                                <th>{{ $customerNow->count()}} </th>
+                                <th colspan="3">{{ $customerNow->count()}} </th>
                             </tr>
                         </tbody>
                     </table>
@@ -156,4 +175,29 @@
 
 	    </div>
 	</div>
+
+    @foreach ($customerNow->get() as $customers)
+    <!-- Modal -->
+    <div wire:ignore class="modal fade" id="delete{{ $customers->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Update Category</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <input type="hidden" wire:model="selected_id">
+          <div class="modal-body">
+            Apakah anda yakin ingin menghapus <span class="text-danger">"{{ $customers->name}}"</span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a href="{{ route('delete_customers',$customers->id)}}" class="btn btn-danger">Delete</a>
+          </div>
+            
+        </div>
+      </div>
+    </div>
+    @endforeach
 </div>

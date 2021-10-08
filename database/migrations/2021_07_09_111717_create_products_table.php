@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
         Schema::enableForeignKeyConstraints();
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->references('id')->on('categories');
+            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('photo');
             $table->string('name_product');
             $table->integer('price');

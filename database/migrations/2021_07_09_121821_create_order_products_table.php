@@ -16,8 +16,8 @@ class CreateOrderProductsTable extends Migration
         Schema::enableForeignKeyConstraints();
         Schema::create('order_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->references('id')->on('products');
-            $table->foreignId('customer_id')->references('id')->on('customers');
+            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreignId('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->integer('quantity');
             $table->integer('price');
             $table->string('status');

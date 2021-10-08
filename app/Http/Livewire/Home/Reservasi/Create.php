@@ -8,10 +8,11 @@ use Carbon\Carbon;
 
 class Create extends Component
 {
-	public $name, $phone, $email, $schedule;
+	public $name, $people, $phone, $email, $schedule;
 
 	protected $rules = [
 		'name' => 'required',
+        'people' => 'required',
 		'phone' => 'required|numeric',
 		'email' => 'required|email',
         'schedule' => 'required'
@@ -35,6 +36,7 @@ class Create extends Component
 
             $input = new Customer;
             $input->name = $this->name;
+            $input->people = $this->people;
             $input->email = $this->email;
             $input->phone = $this->phone;
             $input->no_table = "0";

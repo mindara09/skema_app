@@ -11,7 +11,7 @@ class Index extends Component
 {
 	use WithFileUploads;
 
-	public $category_id, $photo, $name_product, $price, $description, $discount, $percent, $selected_id;
+	public $category_id, $photo, $name_product, $status, $price, $description, $discount, $percent, $selected_id;
 	public $updatedMode = false;
 
 	protected $rules = [
@@ -43,6 +43,7 @@ class Index extends Component
     	$input->category_id = $this->category_id;
     	$input->photo = $this->photo->getClientOriginalName();
     	$input->name_product = $this->name_product;
+        $input->status = "available";
     	$input->price = $this->price;
     	$input->description = $this->description;
         $input->discount = $this->discount;
@@ -130,5 +131,23 @@ class Index extends Component
     	$delete->delete();
 
     	session()->flash('hapus','Delete Data Product Successfully');
+    }
+
+    public function status_stock($id, $status){
+
+        if ($status == "available") {
+            $update = Product::find($id);
+            $update->update([ 'status' => 'empty']);
+            
+            session()->flash('hapus','Out of Stock');
+        }
+        elseif( $status == "empty"){
+            $update = Product::find($id);
+            $update->update([ 'status' => 'available']);
+
+            
+            session()->flash('berhasil','Stock Available');
+        }
+
     }
 }

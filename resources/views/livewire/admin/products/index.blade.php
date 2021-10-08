@@ -43,6 +43,7 @@
 		            		<th>Category</th>
 		            		<th>Photo</th>
 		            		<th>Name Product</th>
+		            		<th>Status</th>
 		            		<th>Price</th>
 		            		<th>Desc</th>
 		            		<th>Discount (%)</th>
@@ -59,6 +60,11 @@
 		            			<img src="{{ asset('/storage/img/products') }}/{{ $item->photo}}" class="img-responsive" width="100" height="100">
 		            		</td>
 		            		<td>{{ $item->name_product}}</td>
+		            		@if ($item->status == "empty")
+		            		<td class="text-danger">{{ $item->status}} </td>
+		            		@elseif ($item->status == "available")
+		            		<td class="text-success">{{ $item->status}} </td>
+		            		@endif
 		            		<td>{{ $item->price}}</td>
 		            		<td>{{ $item->description}}</td>
 		            		<td>{{ $item->discount}}%</td>
@@ -76,6 +82,15 @@
 									<button wire:click="destroy({{ $item->id }})" class="btn btn-link btn-danger btn-sm" >
 										<i class="fa fa-times text-white"></i>
 									</button>
+									@if ($item->status == "available")
+									<button wire:click="status_stock({{ $item->id }}, '{{ $item->status }}')" class="btn btn-link btn-danger btn-sm text-white" >
+										Out of Stock
+									</button>
+									@elseif ($item->status == "empty")
+									<button wire:click="status_stock({{ $item->id }}, '{{ $item->status}}')" class="btn btn-link btn-success btn-sm text-white" >
+										Available
+									</button>
+									@endif
 								</div>
 		            		</td>
 

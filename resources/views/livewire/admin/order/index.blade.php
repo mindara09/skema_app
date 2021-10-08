@@ -28,7 +28,7 @@
 				  <div class="col-lg-9">
 				    <div class="tab-content" id="v-pills-tabContent">
 				      @foreach ($payments as $payments)
-				      <div wire:ignore.self class="tab-pane fade" id="{{ $payments->id_receipt }}" role="tabpanel" aria-labelledby="{{ $payment->id_receipt}}-tab">
+				      <div wire:ignore class="tab-pane fade" id="{{ $payments->id_receipt }}" role="tabpanel" aria-labelledby="{{ $payment->id_receipt}}-tab">
 				      	<h5 class="text-dark">PAYMENT</h5>
 				      	<table class="table table-hover table-bordered">
 				      		<tr>

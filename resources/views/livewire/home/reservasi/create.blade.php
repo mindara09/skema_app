@@ -8,6 +8,16 @@
 			<input type="text" wire:model="phone" class="form-control" placeholder="Phone Number.." style="background-color: #F2F0F0;">
 			<label class="mt-4">Email :</label>
 			<input type="text" wire:model="email" class="form-control" placeholder="Email Address.." style="background-color: #F2F0F0;">
+			<label class="mt-4">Present :</label>
+			<select class="form-control" style="background-color: #F2F0F0;" wire:model="people">
+				<option selected="">Number of people present</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+			</select>
 
 			<label class="mt-4">List Hour :</label>
 			<select class="form-control" style="background-color: #F2F0F0;" wire:model="schedule">

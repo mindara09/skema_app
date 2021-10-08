@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/dashboard/categories','DashboardController@categories')->name('categories');
 	Route::get('/dashboard/products','DashboardController@products')->name('products');
 	Route::get('/dashboard/customers','DashboardController@customers')->name('customers');
+	Route::get('/dashboard/customers/delete/{id}','DashboardController@delete_customers')->name('delete_customers');
 	Route::get('/dashboard/users','DashboardController@users')->name('users');
 });
 	

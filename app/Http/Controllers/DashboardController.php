@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\Customer;
 
 class DashboardController extends Controller
 {
@@ -39,9 +40,19 @@ class DashboardController extends Controller
         return view('admin.customers');
     }
 
+    public function delete_customers($id){
+
+        $delete = Customer::find($id);
+        $delete->delete();
+
+        return redirect()->back();
+
+    }
+
     public function users()
     {
         return view('admin.users');
     }
+
 
 }

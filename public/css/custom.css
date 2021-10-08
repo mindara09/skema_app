@@ -35,3 +35,7 @@
   border-radius: 0.35rem;
   color: black;
 }
+
+.aktiv-grotesk {
+	font-family: aktiv-grotesk, sans-serif; font-style: italic;
+}
